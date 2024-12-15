@@ -5,3 +5,9 @@ services:
   url:
     core: http://localhost:8080
     core-frontend: http://localhost:5173
+spring:
+  cloud:
+    gateway:
+      httpclient:
+        websocket:
+          max-frame-payload-length: 655460
