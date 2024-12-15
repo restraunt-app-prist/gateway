@@ -1,0 +1,4 @@
+services:
+  url:
+    core: http://core:8080
+    core-frontend: http://core-frontend:5173
