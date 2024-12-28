@@ -5,6 +5,8 @@ services:
   url:
     core: http://localhost:8080
     core-frontend: http://localhost:5173
+    admintool-core:
+    admintool-frontend:
 spring:
   cloud:
     gateway:

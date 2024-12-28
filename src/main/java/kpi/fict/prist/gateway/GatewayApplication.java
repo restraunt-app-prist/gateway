@@ -17,16 +17,27 @@ public class GatewayApplication {
 	@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder,
 										   @Value("${services.url.core}") String coreUrl,
-										   @Value("${services.url.core-frontend}") String coreFrontendUrl) {
+										   @Value("${services.url.core-frontend}") String coreFrontendUrl,
+										   @Value("${services.url.admintool-core}") String admintoolCoreUrl,
+										   @Value("${services.url.admintool-frontend}") String admintoolFrontendUrl) {
 		return builder.routes()
-			.route("core", r -> r.order(1)
+			.route("core", r -> r.order(2)
 				.path("/api/**")
 				.filters(filters -> filters.stripPrefix(1)) // strip 1 means we remove one url segment (/api/... => /...)
 				.uri(coreUrl)
 			)
-			.route("core-frontend", r -> r.order(10)
+			.route("core-frontend", r -> r.order(100)
 				.path("/**")
 				.uri(coreFrontendUrl)
+			)
+			.route("admin-core", r -> r.order(1)
+				.path("/api/admin/**")
+				.filters(filters -> filters.stripPrefix(2))
+				.uri(admintoolCoreUrl)
+			)
+			.route("admin-frontend", r -> r.order(50)
+				.path("/admin/**")
+				.uri(admintoolFrontendUrl)
 			)
 			.build();
 	}
