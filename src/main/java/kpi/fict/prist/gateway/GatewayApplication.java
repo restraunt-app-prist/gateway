@@ -35,7 +35,7 @@ public class GatewayApplication {
 				.filters(filters -> filters.stripPrefix(2))
 				.uri(admintoolCoreUrl)
 			)
-			.route("admin-frontend", r -> r.order(150)
+			.route("admin-frontend", r -> r.order(50)
 				.path("/admin/**")
 				.uri(admintoolFrontendUrl)
 			)
